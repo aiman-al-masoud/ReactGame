@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Player from './player';
-
+import Enemy from './enemy';
 
 
 export default class Game extends Component {
@@ -8,18 +8,20 @@ export default class Game extends Component {
     constructor(props) {
         super(props)
         this.player = React.createRef()
+        this.enemy = React.createRef()
     }
 
     render() {
         return (<div>
+            <Enemy ref={this.enemy} id="enemy" />
             <Player ref={this.player} id="player" />
         </div>)
     }
 
 
     /**
-     * When this component gets mounted to the page, add a 
-     * key listener for the commands.
+     * Called once, when this component is first mounted to the page. 
+     * Adds a key listener for the commands, and starts the event loop.
      */
     componentDidMount() {
 
@@ -27,7 +29,6 @@ export default class Game extends Component {
 
             switch (e.code) {
                 case "ArrowRight":
-                    console.log(this.player.current)
                     this.player.current.moveX(10)
                     break;
                 case "ArrowLeft":
@@ -43,6 +44,13 @@ export default class Game extends Component {
 
         })
 
+        // main event loop
+        setInterval(this.eventLoopIteration, 100)
+    }
+    
+
+    eventLoopIteration = ()=>{
+        this.enemy.current.moveX(-10)
     }
 
 
