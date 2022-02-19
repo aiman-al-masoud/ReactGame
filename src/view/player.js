@@ -36,7 +36,7 @@ export default class Player extends Component{
         let othersX = collidable.state.xCoord
         let othersY = collidable.state.yCoord
 
-        console.log(othersX, othersY)
+        // console.log(othersX, othersY)
 
         
         if ( Math.abs(this.state.xCoord - othersX) > 60 ){

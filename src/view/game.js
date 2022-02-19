@@ -13,9 +13,7 @@ export default class Game extends Component {
 
     makeEnemy() {
         let newRef = React.createRef()
-        let yCoord = parseInt(window.outerHeight*Math.random())
-        // let xCoord = parseInt(window.outerWidth*Math.random())
-        
+        let yCoord = parseInt(window.outerHeight*Math.random())        
         this.enemies.push(newRef)
         return <Enemy ref={newRef} id="enemy" yCoord={yCoord} />
     }
@@ -24,10 +22,12 @@ export default class Game extends Component {
         return (<div>
             {this.makeEnemy()}
             {this.makeEnemy()}
+            {this.makeEnemy()}
+            {this.makeEnemy()}
+            {this.makeEnemy()}
             <Player ref={this.player} id="player" />
         </div>)
     }
-
 
     /**
      * Called once, when this component is first mounted to the page. 
@@ -63,20 +63,19 @@ export default class Game extends Component {
      */
     eventLoopIteration = () => {
 
-        for(let enemy of this.enemies){
-            enemy.current.moveX(-10)
+        // remove enemies that go off-screen
+        this.enemies = this.enemies.filter((e)=>{return !e.current.isOffScreen()})
+
+        // nudge enemies forward
+        this.enemies.forEach((e)=>{e.current.moveX(-10)})
+
+        // check player's collision with enemies
+        if( this.enemies.some((e)=> {return this.player.current.collide(e.current)}) ){
+            console.log("boom! Game over... :(") 
+            this.player.current.explode() 
+            clearInterval(this.eventLoopId) 
         }
 
-        var boom;
-        for(let enemy of this.enemies){
-            if( boom = this.player.current.collide(enemy.current)){
-                break
-            }
-        }
-
-        boom ? console.log("boom! Game over... :(") : ""
-        boom ? this.player.current.explode() : ""
-        boom ? clearInterval(this.eventLoopId) : ""
     }
 
 
