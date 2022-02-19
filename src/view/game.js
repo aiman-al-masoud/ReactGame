@@ -8,24 +8,42 @@ export default class Game extends Component {
 
     constructor(props) {
         super(props)
+
+        this.state={
+            wave : 0
+        }
+
         this.player = React.createRef()
+
         this.enemies = []
+
         this.spawnEnemies()
+        
     }
 
     spawnEnemies() {
-        for (let i = 0; i < 5; i++) {
+
+        let NUM_ENEMIES = parseInt(5* (this.state.wave+1))
+        
+        for (let i = 0; i < NUM_ENEMIES; i++) {
             let newRef = React.createRef()
             this.enemies.push(newRef)
             this.forceUpdate()
         }
+
+        this.setState({wave : this.state.wave+1})
     }
 
     render() {
-        return (<div>
+        return (
+        
+        <div>
+            <p className='score_box'>{this.state.wave}</p>
             {this.enemies.map((ref) => { return <Enemy ref={ref} yCoord={parseInt(window.outerHeight * Math.random())} /> })}
             <Player ref={this.player} id="player" />
-        </div>)
+        </div>
+        
+        )
     }
 
     /**

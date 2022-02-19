@@ -1,2 +1,19 @@
 /*Hide browser's scroll bar*/
 html, body {margin: 0; height: 100%; overflow: hidden}
+
+
+
+.score_box{
+    border: solid black 5px;
+    padding: 10px;
+    width: 2vw;
+    margin: 1vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: large;
+    background: yellow;
+    color: red;
+
+
+}
