@@ -7,8 +7,8 @@ export default class Enemy extends Component {
         super(props);
 
         this.state = {
-            xCoord: 1000,
-            yCoord: 0
+            xCoord: props.xCoord??1000,
+            yCoord: props.yCoord??0
         }
 
     }

@@ -8,12 +8,22 @@ export default class Game extends Component {
     constructor(props) {
         super(props)
         this.player = React.createRef()
+        // this.enemies = []
+    }
+
+    makeEnemy() {
         this.enemy = React.createRef()
+        let yCoord = parseInt(window.outerHeight*Math.random())
+        // let xCoord = parseInt(window.outerWidth*Math.random())
+        
+        // this.enemies.push()
+
+        return <Enemy ref={this.enemy} id="enemy" yCoord={yCoord} />
     }
 
     render() {
         return (<div>
-            <Enemy ref={this.enemy} id="enemy" />
+            {this.makeEnemy()}
             <Player ref={this.player} id="player" />
         </div>)
     }
@@ -45,17 +55,21 @@ export default class Game extends Component {
         })
 
         // main event loop
-        this.intervalId = setInterval(this.eventLoopIteration, 100)
+        this.eventLoopId = setInterval(this.eventLoopIteration, 100)
     }
 
+    /**
+     * An iteration of the game's event loop.
+     */
+    eventLoopIteration = () => {
 
-    eventLoopIteration = ()=>{
         this.enemy.current.moveX(-10)
+
         let boom = this.player.current.collide(this.enemy.current)
 
-        boom? console.log("boom! Game over... :("):""
-        boom? this.player.current.explode() : ""
-        boom? clearInterval(this.intervalId) : ""
+        boom ? console.log("boom! Game over... :(") : ""
+        boom ? this.player.current.explode() : ""
+        boom ? clearInterval(this.eventLoopId) : ""
     }
 
 
