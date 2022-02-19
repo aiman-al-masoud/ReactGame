@@ -45,12 +45,17 @@ export default class Game extends Component {
         })
 
         // main event loop
-        setInterval(this.eventLoopIteration, 100)
+        this.intervalId = setInterval(this.eventLoopIteration, 100)
     }
-    
+
 
     eventLoopIteration = ()=>{
         this.enemy.current.moveX(-10)
+        let boom = this.player.current.collide(this.enemy.current)
+
+        boom? console.log("boom! Game over... :("):""
+        boom? this.player.current.explode() : ""
+        boom? clearInterval(this.intervalId) : ""
     }
 
 
