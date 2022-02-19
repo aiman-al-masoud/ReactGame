@@ -9,7 +9,7 @@ export default class Game extends Component {
         super(props)
         this.player = React.createRef()
         this.enemies = []
-        this.spawnEnemies()   
+        this.spawnEnemies()
     }
 
     spawnEnemies() {
@@ -48,9 +48,6 @@ export default class Game extends Component {
                 case "ArrowDown":
                     this.player.current.moveY(10)
                     break;
-                case "Enter":
-                    this.spawnEnemies()
-                    break;
             }
 
         })
@@ -63,13 +60,13 @@ export default class Game extends Component {
      * An iteration of the game's event loop.
      */
     eventLoopIteration = () => {
-        
+
         // remove enemies that go off-screen
         this.enemies = this.enemies.filter((e) => { return !e.current.isOffScreen() })
-     
+
         // nudge enemies forward
         this.enemies.forEach((e) => { e.current.moveX(-40) })
-      
+
         // check player's collision with enemies
         if (this.enemies.some((e) => { return this.player.current.collide(e.current) })) {
             console.log("Boom! Game Over... :(")
@@ -78,9 +75,9 @@ export default class Game extends Component {
         }
 
         //spawn a new wave of enemies if none's left
-        if(this.enemies.length==0){
+        if (this.enemies.length == 0) {
             this.spawnEnemies()
-        }   
+        }
 
     }
 
