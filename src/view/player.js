@@ -1,5 +1,7 @@
 import React, {Component} from "react"
 import Icon from "../res/stoopid_choppy.gif"
+import ExplosionImg from "../res/explosion.gif"
+
 
 export default class Player extends Component{
 
@@ -9,13 +11,15 @@ export default class Player extends Component{
         this.state = {
             xCoord : 0,
             yCoord : 0,
-            movable : true
+            movable : true,
+            icon : Icon,
+            visible : true
         }
 
     }
 
     render(){
-        return <img src={Icon} style={{position:"absolute", top: this.state.yCoord, left : this.state.xCoord, width:"200px"}}/>
+        return <img id="img_player" src={this.state.icon} style={{position:"absolute", top: this.state.yCoord, left : this.state.xCoord, width:"200px", visibility : this.state.visible? "visible" : "hidden" }}/>
     }
 
     moveX(step){
@@ -48,7 +52,8 @@ export default class Player extends Component{
     }
 
     explode(){
-        this.setState({movable : false})
+        this.setState({movable : false, icon : ExplosionImg})
+        setTimeout(()=>{this.setState({visible : false})}, 800)
     }
 
 
