@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Player from './player';
 import Enemy from './enemy';
+import "../index.css"
 
 
 export default class Game extends Component {
@@ -47,6 +48,9 @@ export default class Game extends Component {
                     break;
                 case "ArrowDown":
                     this.player.current.moveY(10)
+                    break;
+                case "Enter":
+                    this.spawnEnemies()
                     break;
             }
 

@@ -7,3 +7,6 @@
     background: goldenrod;
     width : 30vw;
 }
+
+/*Hide browser's scroll bar*/
+html, body {margin: 0; height: 100%; overflow: hidden}
