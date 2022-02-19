@@ -1,0 +1,9 @@
+.normal_button{
+    background: orange;
+}
+
+.input_bar{
+    border-radius: 30px;
+    background: goldenrod;
+    width : 30vw;
+}
