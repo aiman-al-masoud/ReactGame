@@ -9,22 +9,20 @@ export default class Game extends Component {
         super(props)
         this.player = React.createRef()
         this.enemies = []
+        this.spawnEnemies()   
     }
 
-    makeEnemy() {
-        let newRef = React.createRef()
-        let yCoord = parseInt(window.outerHeight*Math.random())        
-        this.enemies.push(newRef)
-        return <Enemy ref={newRef} id="enemy" yCoord={yCoord} />
+    spawnEnemies() {
+        for (let i = 0; i < 5; i++) {
+            let newRef = React.createRef()
+            this.enemies.push(newRef)
+            this.forceUpdate()
+        }
     }
 
     render() {
         return (<div>
-            {this.makeEnemy()}
-            {this.makeEnemy()}
-            {this.makeEnemy()}
-            {this.makeEnemy()}
-            {this.makeEnemy()}
+            {this.enemies.map((ref) => { return <Enemy ref={ref} yCoord={parseInt(window.outerHeight * Math.random())} /> })}
             <Player ref={this.player} id="player" />
         </div>)
     }
@@ -50,6 +48,9 @@ export default class Game extends Component {
                 case "ArrowDown":
                     this.player.current.moveY(10)
                     break;
+                case "Enter":
+                    this.spawnEnemies()
+                    break;
             }
 
         })
@@ -62,19 +63,24 @@ export default class Game extends Component {
      * An iteration of the game's event loop.
      */
     eventLoopIteration = () => {
-
+        
         // remove enemies that go off-screen
-        this.enemies = this.enemies.filter((e)=>{return !e.current.isOffScreen()})
-
+        this.enemies = this.enemies.filter((e) => { return !e.current.isOffScreen() })
+     
         // nudge enemies forward
-        this.enemies.forEach((e)=>{e.current.moveX(-10)})
-
+        this.enemies.forEach((e) => { e.current.moveX(-40) })
+      
         // check player's collision with enemies
-        if( this.enemies.some((e)=> {return this.player.current.collide(e.current)}) ){
-            console.log("boom! Game over... :(") 
-            this.player.current.explode() 
-            clearInterval(this.eventLoopId) 
+        if (this.enemies.some((e) => { return this.player.current.collide(e.current) })) {
+            console.log("Boom! Game Over... :(")
+            this.player.current.explode()
+            clearInterval(this.eventLoopId)
         }
+
+        //spawn a new wave of enemies if none's left
+        if(this.enemies.length==0){
+            this.spawnEnemies()
+        }   
 
     }
 
