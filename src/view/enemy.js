@@ -21,15 +21,9 @@ export default class Enemy extends Component {
         this.setState({ xCoord: this.state.xCoord + step })
     }
 
-    // moveY(step){
-    //     this.setState({yCoord: this.state.yCoord+step})
-    // }
-
     isOffScreen(){
         return (this.state.xCoord + 40 ) < 0
     }
-
-
 
 
 }
