@@ -1,6 +1,6 @@
 # React Game
 
-React isn't meant to make games, of course. But it's definitely possible (and fun) to build simple 2D games in React!
+React isn't meant to make games, of course. But it's definitely possible (and fun) to build simple 2D games in React! Why? Because the sky is ... explosive.
 
 ## Try it out:
 
