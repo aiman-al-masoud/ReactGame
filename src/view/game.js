@@ -85,10 +85,12 @@ export default class Game extends Component {
         this.enemies.forEach((e) => { e.current.moveX(-40) })
 
         // check player's collision with enemies
-        if (this.enemies.some((e) => { return this.player.current.collide(e.current) })) {
-            console.log("Boom! Game Over... :(")
-            this.player.current.explode()
-            clearInterval(this.eventLoopId)
+        for(let enemy of this.enemies){
+            if(this.player.current.collide(enemy.current)){
+                enemy.current.explode()
+                this.player.current.explode()
+                clearInterval(this.eventLoopId)
+            }
         }
 
         //spawn a new wave of enemies if none's left
