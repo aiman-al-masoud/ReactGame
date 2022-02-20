@@ -13,6 +13,9 @@ React isn't meant to make games, of course, but it's definitely possible (and fu
 ## The Game:
 Try avoiding the missiles!
 
+<img src="./src/res/demo.gif"></img>
+
+
 ## Commands:
 Arrow keys to move.
 
