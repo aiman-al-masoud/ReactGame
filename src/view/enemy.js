@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import Icon from "../res/missile.png"
-import ExplosionImg from "../res/explosion.gif"///
+import ExplosionImg from "../res/explosion.gif"
 
 
 

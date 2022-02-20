@@ -3,7 +3,6 @@ import Player from './player';
 import Enemy from './enemy';
 import "../index.css"
 
-
 export default class Game extends Component {
 
     constructor(props) {
@@ -33,9 +32,11 @@ export default class Game extends Component {
     }
 
     render() {
+
         return (
         
-        <div>
+        
+        <div >
             <p className='score_box'>{this.state.wave}</p>
             {this.enemies.map((ref) => { return <Enemy ref={ref} yCoord={parseInt(window.outerHeight * Math.random())} /> })}
             <Player ref={this.player} id="player" />

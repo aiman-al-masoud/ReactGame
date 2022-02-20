@@ -1,8 +1,14 @@
 /*Hide browser's scroll bar*/
 html, body {margin: 0; height: 100%; overflow: hidden}
 
+/*Background image properties*/
+body{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+}
 
-
+/*Display the score box*/
 .score_box{
     border: solid black 5px;
     padding: 10px;
@@ -15,6 +21,4 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     background: yellow;
     color: red;
     z-index: 100000;
-
-
 }
