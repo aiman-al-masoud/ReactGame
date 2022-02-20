@@ -14,9 +14,7 @@ export default class Game extends Component {
         }
 
         this.player = React.createRef()
-
         this.enemies = []
-
         this.spawnEnemies()
         
     }
@@ -66,9 +64,6 @@ export default class Game extends Component {
                     break;
                 case "ArrowDown":
                     this.player.current.moveY(10)
-                    break;
-                case "Enter":
-                    this.spawnEnemies()
                     break;
             }
 
