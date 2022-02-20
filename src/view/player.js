@@ -19,7 +19,7 @@ export default class Player extends Component{
     }
 
     render(){
-        return <img id="img_player" src={this.state.icon} style={{position:"absolute", top: this.state.yCoord, left : this.state.xCoord, width:"200px", visibility : this.state.visible? "visible" : "hidden" }}/>
+        return <img src={this.state.icon} style={{position:"absolute", top: this.state.yCoord, left : this.state.xCoord, width:"200px", visibility : this.state.visible? "visible" : "hidden" }}/>
     }
 
     moveX(step){
@@ -31,14 +31,10 @@ export default class Player extends Component{
     }
 
     collide(collidable){
-
         
         let othersX = collidable.state.xCoord
         let othersY = collidable.state.yCoord
 
-        // console.log(othersX, othersY)
-
-        
         if ( Math.abs(this.state.xCoord - othersX) > 60 ){
             return false
         }
@@ -48,7 +44,6 @@ export default class Player extends Component{
         }
 
         return true
-
     }
 
     explode(){
