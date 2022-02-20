@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Icon from "../res/missile.png"
 import ExplosionImg from "../res/explosion.gif"
-
+import ExplosionSound from "../res/explosion.wav"
 
 
 export default class Enemy extends Component {
@@ -33,6 +33,13 @@ export default class Enemy extends Component {
 
     explode(){
         this.setState({movable : false, icon : ExplosionImg})
+        
+        let audio = document.createElement("audio")
+        audio.src = ExplosionSound
+
+        audio.play()
+        audio.volume = 0.2
+
         setTimeout(()=>{this.setState({visible : false})}, 800)
     }
 
