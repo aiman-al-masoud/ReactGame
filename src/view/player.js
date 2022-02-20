@@ -9,7 +9,7 @@ export default class Player extends Component{
         super(props);
 
         this.state = {
-            xCoord : 0,
+            xCoord : 200,
             yCoord : 0,
             movable : true,
             icon : Icon,
