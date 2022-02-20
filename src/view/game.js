@@ -9,8 +9,10 @@ export default class Game extends Component {
         super(props)
 
         this.state={
-            wave : 0
+            wave : 0,
+            highscore : localStorage.getItem("highscore")??0
         }
+        
 
         this.player = React.createRef()
         this.enemies = []
@@ -37,7 +39,7 @@ export default class Game extends Component {
         
         
         <div >
-            <p className='score_box'>{this.state.wave}</p>
+            <p className='score_box'>score: {this.state.wave}, highscore: {this.state.highscore}</p>
             {this.enemies.map((ref) => { return <Enemy ref={ref} yCoord={parseInt(window.outerHeight * Math.random())} /> })}
             <Player ref={this.player} id="player" />
         </div>
@@ -90,6 +92,7 @@ export default class Game extends Component {
             if(this.player.current.collide(enemy.current)){
                 enemy.current.explode()
                 this.player.current.explode()
+                localStorage.setItem("highscore", this.state.wave>this.state.highscore? this.state.wave :  this.state.highscore)
                 clearInterval(this.eventLoopId)
             }
         }
