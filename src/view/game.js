@@ -39,7 +39,7 @@ export default class Game extends Component {
         
         
         <div >
-            <p className='score_box'>score: {this.state.wave}, highscore: {this.state.highscore}</p>
+            <p className='score_box'>score: {this.state.wave} <br/> highscore: {this.state.highscore}</p>
             {this.enemies.map((ref) => { return <Enemy ref={ref} yCoord={parseInt(window.outerHeight * Math.random())} /> })}
             <Player ref={this.player} id="player" />
         </div>
