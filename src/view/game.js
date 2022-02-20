@@ -87,6 +87,9 @@ export default class Game extends Component {
         // nudge enemies forward
         this.enemies.forEach((e) => { e.current.moveX(-40) })
 
+        // nudge player downwards
+        this.player.current.moveY(1)
+
         // check player's collision with enemies
         for(let enemy of this.enemies){
             if(this.player.current.collide(enemy.current)){
