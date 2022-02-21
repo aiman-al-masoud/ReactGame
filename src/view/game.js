@@ -43,7 +43,7 @@ export default class Game extends Component {
         <div >
             <p className='score_box'>score: {this.state.wave} <br/> highscore: {this.state.highscore}</p>
             {this.enemies.map((ref) => { return <Enemy ref={ref} yCoord={parseInt(window.outerHeight * Math.random())} /> })}
-            <Player ref={this.player} id="player" />
+            <Player ref={this.player}  />
 
             {this.state.gameover? <Gameover/> : ""}
 
@@ -72,6 +72,9 @@ export default class Game extends Component {
                     break;
                 case "ArrowDown":
                     this.player.current.moveY(10)
+                    break;
+                case "Enter":
+                    this.player.current.state.visible? this.player.current.hide() : this.player.current.show()
                     break;
             }
 

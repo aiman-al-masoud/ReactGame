@@ -1,46 +1,26 @@
-import React, { Component } from "react"
 import Icon from "../res/missile.png"
 import ExplosionImg from "../res/explosion.gif"
 import ExplosionSound from "../res/explosion.wav"
+import Sprite from "./sprite"
 
 
-export default class Enemy extends Component {
+export default class Enemy extends Sprite {
 
-    constructor(props) {
+    constructor(props){
+        props.icon = Icon
+        props.xCoord = 1000
+        props.width = 60
         super(props);
-
-        this.state = {
-            xCoord: props.xCoord??1000,
-            yCoord: props.yCoord??0,
-            icon : Icon,
-            visible : true,
-            movable : true
-        }
-
-    }
-
-    render() {
-        return <img src={this.state.icon} style={{ position: "absolute", top: this.state.yCoord, left: this.state.xCoord, width: "40px", visibility : this.state.visible? "visible" : "hidden" }} />
-    }
-
-    moveX(step) {
-        this.setState({ xCoord: this.state.xCoord + step })
-    }
-
-    isOffScreen(){
-        return (this.state.xCoord + 40 ) < 0
     }
 
     explode(){
-        this.setState({movable : false, icon : ExplosionImg})
-        
+        this.freeze()
+        this.setState({icon : ExplosionImg})
         let audio = document.createElement("audio")
         audio.src = ExplosionSound
-
-        audio.play()
         audio.volume = 0.2
-
-        setTimeout(()=>{this.setState({visible : false})}, 800)
+        audio.play()
+        setTimeout(()=>{this.hide()}, 800)
     }
 
 
