@@ -6,6 +6,7 @@ import Sprite from "./sprite"
 export default class Player extends Sprite{
     constructor(props){
         props.icon = Icon
+        props.xCoord = 300
         super(props)
     }
 
