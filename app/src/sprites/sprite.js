@@ -26,7 +26,6 @@ export default class Sprite extends Component {
     }
 
     moveX(step) {
-        console.log("move x")
         this.state.movable ? this.setState({ xCoord: this.state.xCoord + step }) : ""
     }
 
