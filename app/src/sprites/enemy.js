@@ -16,8 +16,7 @@ export default class Enemy extends Sprite {
     explode(){
         this.freeze()
         this.setState({icon : ExplosionImg})
-        let audio = document.createElement("audio")
-        audio.src = ExplosionSound
+        let audio = new Audio(ExplosionSound)
         audio.volume = 0.2
         audio.play()
         setTimeout(()=>{this.hide()}, 800)
