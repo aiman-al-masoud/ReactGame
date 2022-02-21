@@ -7,6 +7,7 @@ body{
     background-attachment: fixed;
     background-position: center; 
     background-color: aquamarine;
+    background-size: cover;
 }
 
 /*Display the score box*/
