@@ -10,7 +10,7 @@ export default class Gameover extends Component {
         return (
             <div className="gameover">
                 <h1>Game Over!</h1>
-                <p>Ctrl + R to play again.</p>
+                <p>Ctrl + R (or Command + R) to play again.</p>
                 <p>F11 for full-screen mode</p>
             </div>
         )
